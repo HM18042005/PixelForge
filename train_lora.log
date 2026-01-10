@@ -257,3 +257,213 @@ To use trained LoRA weights:
 2026-01-05 15:39:27,657 - INFO -   from diffusers import StableDiffusionPipeline
 2026-01-05 15:39:27,658 - INFO -   pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5')
 2026-01-05 15:39:27,658 - INFO -   pipe.load_lora_weights('sd15-lora-output')
+2026-01-05 15:43:37,745 - INFO - ================================================================================
+2026-01-05 15:43:37,746 - INFO - Starting Stable Diffusion 1.5 LoRA Training (Demo)
+2026-01-05 15:43:37,746 - INFO - ================================================================================
+2026-01-05 15:43:37,746 - INFO - Model: runwayml/stable-diffusion-v1-5
+2026-01-05 15:43:37,746 - INFO - LoRA rank: 4
+2026-01-05 15:43:37,746 - INFO - Learning rate: 0.0005
+2026-01-05 15:43:37,747 - INFO - Output dir: sd15-lora-output
+2026-01-05 15:43:37,747 - INFO - ================================================================================
+2026-01-05 15:43:37,747 - INFO - Loading Stable Diffusion 1.5 models...
+2026-01-05 15:43:43,830 - INFO - Freezing base model parameters...
+2026-01-05 15:43:43,833 - INFO - Adding LoRA adapters...
+2026-01-05 15:43:43,939 - INFO - Setting up optimizer and scheduler...
+2026-01-05 15:43:43,943 - INFO - Preparing models with accelerator...
+2026-01-05 15:43:46,347 - INFO - Starting training loop...
+2026-01-05 15:43:46,347 - INFO - ================================================================================
+2026-01-05 15:43:51,257 - INFO - Step 10/500 - Loss: 1.9401
+2026-01-05 15:43:55,720 - INFO - Step 20/500 - Loss: 1.9222
+2026-01-05 15:44:00,179 - INFO - Step 30/500 - Loss: 1.0873
+2026-01-05 15:44:04,692 - INFO - Step 40/500 - Loss: 1.0138
+2026-01-05 15:44:09,155 - INFO - Step 50/500 - Loss: 1.0118
+2026-01-05 15:44:13,621 - INFO - Step 60/500 - Loss: 1.0160
+2026-01-05 15:44:18,081 - INFO - Step 70/500 - Loss: 1.0173
+2026-01-05 15:44:22,538 - INFO - Step 80/500 - Loss: 1.0144
+2026-01-05 15:44:27,015 - INFO - Step 90/500 - Loss: 1.0037
+2026-01-05 15:44:31,495 - INFO - Step 100/500 - Loss: 1.0256
+2026-01-05 15:44:35,987 - INFO - Step 110/500 - Loss: 1.0175
+2026-01-05 15:44:40,536 - INFO - Step 120/500 - Loss: 1.0234
+2026-01-05 15:44:45,004 - INFO - Step 130/500 - Loss: 1.0098
+2026-01-05 15:44:49,462 - INFO - Step 140/500 - Loss: 1.0152
+2026-01-05 15:44:53,926 - INFO - Step 150/500 - Loss: 1.0169
+2026-01-05 15:44:58,386 - INFO - Step 160/500 - Loss: 1.0086
+2026-01-05 15:45:02,861 - INFO - Step 170/500 - Loss: 1.0072
+2026-01-05 15:45:07,336 - INFO - Step 180/500 - Loss: 0.9858
+2026-01-05 15:45:11,801 - INFO - Step 190/500 - Loss: 1.0084
+2026-01-05 15:45:16,275 - INFO - Step 200/500 - Loss: 0.9953
+2026-01-05 15:45:20,743 - INFO - Step 210/500 - Loss: 0.9905
+2026-01-05 15:45:25,216 - INFO - Step 220/500 - Loss: 0.9943
+2026-01-05 15:45:29,687 - INFO - Step 230/500 - Loss: 0.9948
+2026-01-05 15:45:34,160 - INFO - Step 240/500 - Loss: 1.0021
+2026-01-05 15:45:38,642 - INFO - Step 250/500 - Loss: 1.0072
+2026-01-05 15:45:43,115 - INFO - Step 260/500 - Loss: 1.0175
+2026-01-05 15:45:47,586 - INFO - Step 270/500 - Loss: 1.0080
+2026-01-05 15:45:52,060 - INFO - Step 280/500 - Loss: 1.0034
+2026-01-05 15:45:56,537 - INFO - Step 290/500 - Loss: 0.9926
+2026-01-05 15:46:01,013 - INFO - Step 300/500 - Loss: 1.0206
+2026-01-05 15:46:05,486 - INFO - Step 310/500 - Loss: 1.0082
+2026-01-05 15:46:09,953 - INFO - Step 320/500 - Loss: 1.0162
+2026-01-05 15:46:14,427 - INFO - Step 330/500 - Loss: 1.0085
+2026-01-05 15:46:18,902 - INFO - Step 340/500 - Loss: 0.9826
+2026-01-05 15:46:23,363 - INFO - Step 350/500 - Loss: 0.9931
+2026-01-05 15:46:27,834 - INFO - Step 360/500 - Loss: 1.0097
+2026-01-05 15:46:32,308 - INFO - Step 370/500 - Loss: 1.0189
+2026-01-05 15:46:36,743 - INFO - Step 380/500 - Loss: 1.0029
+2026-01-05 15:46:41,183 - INFO - Step 390/500 - Loss: 0.9614
+2026-01-05 15:46:45,629 - INFO - Step 400/500 - Loss: 1.0091
+2026-01-05 15:46:50,077 - INFO - Step 410/500 - Loss: 1.0170
+2026-01-05 15:46:54,530 - INFO - Step 420/500 - Loss: 1.0145
+2026-01-05 15:46:58,989 - INFO - Step 430/500 - Loss: 0.9929
+2026-01-05 15:47:03,460 - INFO - Step 440/500 - Loss: 1.0212
+2026-01-05 15:47:07,937 - INFO - Step 450/500 - Loss: 1.0032
+2026-01-05 15:47:12,418 - INFO - Step 460/500 - Loss: 1.0046
+2026-01-05 15:47:16,892 - INFO - Step 470/500 - Loss: 0.9828
+2026-01-05 15:47:21,369 - INFO - Step 480/500 - Loss: 1.0194
+2026-01-05 15:47:25,843 - INFO - Step 490/500 - Loss: 1.0065
+2026-01-05 15:47:30,320 - INFO - Step 500/500 - Loss: 0.9915
+2026-01-05 15:47:30,321 - INFO - ================================================================================
+2026-01-05 15:47:30,321 - INFO - Saving LoRA weights...
+2026-01-05 15:47:30,360 - INFO - ================================================================================
+2026-01-05 15:47:30,360 - INFO - ================================================================================
+2026-01-05 15:47:30,360 - INFO - 
+To use trained LoRA weights:
+2026-01-05 15:47:30,360 - INFO -   from diffusers import StableDiffusionPipeline
+2026-01-05 15:47:30,360 - INFO -   pipe = StableDiffusionPipeline.from_pretrained('runwayml/stable-diffusion-v1-5')
+2026-01-05 15:47:30,361 - INFO -   pipe.load_lora_weights('sd15-lora-output')
+2026-01-05 15:51:07,639 - INFO - ================================================================================
+2026-01-05 15:51:07,639 - INFO - Starting Stable Diffusion 1.5 LoRA Training
+2026-01-05 15:51:07,639 - INFO - ================================================================================
+2026-01-05 15:51:07,639 - INFO - Model: runwayml/stable-diffusion-v1-5
+2026-01-05 15:51:07,640 - INFO - Resolution: 512x512
+2026-01-05 15:51:07,640 - INFO - Batch size: 1
+2026-01-05 15:51:07,640 - INFO - Learning rate: 0.0001
+2026-01-05 15:51:07,640 - INFO - LoRA rank: 4
+2026-01-05 15:51:07,640 - INFO - Epochs: 1
+2026-01-05 15:51:07,640 - INFO - Output dir: sd15-lora-output
+2026-01-05 15:51:07,640 - INFO - ================================================================================
+2026-01-05 15:51:07,641 - INFO - Loading models...
+2026-01-05 15:51:07,641 - INFO -   Loading text encoder...
+2026-01-05 15:51:09,724 - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2026-01-05 15:53:06,569 - INFO -   Loading VAE...
+2026-01-05 15:53:08,032 - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2026-01-05 15:54:18,190 - INFO -   Loading UNet...
+2026-01-05 15:54:19,946 - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2026-01-05 16:02:16,000 - INFO -   Loading tokenizer...
+2026-01-05 16:02:21,063 - INFO -   Loading scheduler...
+2026-01-05 16:02:21,643 - INFO - Freezing base model parameters...
+2026-01-05 16:02:21,646 - INFO - Adding LoRA adapters...
+2026-01-05 16:02:21,749 - INFO - Trainable parameters: 797,184 / 860,318,148 (0.09%)
+2026-01-05 16:02:21,750 - INFO - Loading dataset...
+2026-01-05 16:02:21,883 - INFO - Loaded 1800 image-caption pairs
+2026-01-05 16:02:21,884 - INFO - Setting up optimizer and scheduler...
+2026-01-05 16:02:21,889 - INFO - Preparing with accelerator...
+2026-01-05 16:02:24,185 - INFO - Starting training...
+2026-01-05 16:02:24,185 - INFO - ================================================================================
+2026-01-05 16:02:24,187 - INFO - 
+Epoch 1/1
+2026-01-05 16:02:35,565 - INFO - Epoch 1, Step 20, Loss: 0.0721
+2026-01-05 16:02:45,959 - INFO - Epoch 1, Step 40, Loss: 0.0211
+2026-01-05 16:02:56,494 - INFO - Epoch 1, Step 60, Loss: 0.4103
+2026-01-05 16:03:06,746 - INFO - Epoch 1, Step 80, Loss: 0.2082
+2026-01-05 16:03:16,904 - INFO - Epoch 1, Step 100, Loss: 0.0419
+2026-01-05 16:03:27,092 - INFO - Epoch 1, Step 120, Loss: 0.3344
+2026-01-05 16:03:37,306 - INFO - Epoch 1, Step 140, Loss: 0.0424
+2026-01-05 16:03:47,500 - INFO - Epoch 1, Step 160, Loss: 0.1419
+2026-01-05 16:03:57,750 - INFO - Epoch 1, Step 180, Loss: 0.4767
+2026-01-05 16:04:07,911 - INFO - Epoch 1, Step 200, Loss: 0.0971
+2026-01-05 16:04:07,950 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-200
+2026-01-05 16:04:18,165 - INFO - Epoch 1, Step 220, Loss: 0.1054
+2026-01-05 16:04:28,570 - INFO - Epoch 1, Step 240, Loss: 0.0252
+2026-01-05 16:04:38,839 - INFO - Epoch 1, Step 260, Loss: 0.0073
+2026-01-05 16:04:49,151 - INFO - Epoch 1, Step 280, Loss: 0.0872
+2026-01-05 16:04:59,554 - INFO - Epoch 1, Step 300, Loss: 0.1133
+2026-01-05 16:05:09,754 - INFO - Epoch 1, Step 320, Loss: 0.1633
+2026-01-05 16:05:19,981 - INFO - Epoch 1, Step 340, Loss: 0.2101
+2026-01-05 16:05:30,235 - INFO - Epoch 1, Step 360, Loss: 0.0366
+2026-01-05 16:05:40,416 - INFO - Epoch 1, Step 380, Loss: 0.1211
+2026-01-05 16:05:52,015 - INFO - Epoch 1, Step 400, Loss: 0.0385
+2026-01-05 16:05:52,071 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-400
+2026-01-05 16:06:04,644 - INFO - Epoch 1, Step 420, Loss: 0.1334
+2026-01-05 16:06:16,445 - INFO - Epoch 1, Step 440, Loss: 0.0498
+2026-01-05 16:06:28,843 - INFO - Epoch 1, Step 460, Loss: 0.0066
+2026-01-05 16:06:41,154 - INFO - Epoch 1, Step 480, Loss: 0.0259
+2026-01-05 16:06:53,570 - INFO - Epoch 1, Step 500, Loss: 0.2417
+2026-01-05 16:07:06,180 - INFO - Epoch 1, Step 520, Loss: 0.0032
+2026-01-05 16:07:18,898 - INFO - Epoch 1, Step 540, Loss: 0.0251
+2026-01-05 16:07:31,057 - INFO - Epoch 1, Step 560, Loss: 0.0043
+2026-01-05 16:07:43,601 - INFO - Epoch 1, Step 580, Loss: 0.2119
+2026-01-05 16:07:56,031 - INFO - Epoch 1, Step 600, Loss: 0.0071
+2026-01-05 16:07:56,090 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-600
+2026-01-05 16:08:08,557 - INFO - Epoch 1, Step 620, Loss: 0.2231
+2026-01-05 16:08:20,966 - INFO - Epoch 1, Step 640, Loss: 0.0412
+2026-01-05 16:08:33,133 - INFO - Epoch 1, Step 660, Loss: 0.0031
+2026-01-05 16:08:43,440 - INFO - Epoch 1, Step 680, Loss: 0.3940
+2026-01-05 16:08:53,665 - INFO - Epoch 1, Step 700, Loss: 0.2139
+2026-01-05 16:09:03,901 - INFO - Epoch 1, Step 720, Loss: 0.4743
+2026-01-05 16:09:14,095 - INFO - Epoch 1, Step 740, Loss: 0.0193
+2026-01-05 16:09:24,352 - INFO - Epoch 1, Step 760, Loss: 0.0377
+2026-01-05 16:09:34,570 - INFO - Epoch 1, Step 780, Loss: 0.3430
+2026-01-05 16:09:44,786 - INFO - Epoch 1, Step 800, Loss: 0.0399
+2026-01-05 16:09:44,824 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-800
+2026-01-05 16:09:55,129 - INFO - Epoch 1, Step 820, Loss: 0.0841
+2026-01-05 16:10:05,390 - INFO - Epoch 1, Step 840, Loss: 0.0098
+2026-01-05 16:10:15,645 - INFO - Epoch 1, Step 860, Loss: 0.3896
+2026-01-05 16:10:25,839 - INFO - Epoch 1, Step 880, Loss: 0.3512
+2026-01-05 16:10:36,070 - INFO - Epoch 1, Step 900, Loss: 0.0965
+2026-01-05 16:10:46,273 - INFO - Epoch 1, Step 920, Loss: 0.1365
+2026-01-05 16:10:56,516 - INFO - Epoch 1, Step 940, Loss: 0.2014
+2026-01-05 16:11:06,747 - INFO - Epoch 1, Step 960, Loss: 0.0063
+2026-01-05 16:11:17,174 - INFO - Epoch 1, Step 980, Loss: 0.2818
+2026-01-05 16:11:27,423 - INFO - Epoch 1, Step 1000, Loss: 0.0231
+2026-01-05 16:11:27,462 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-1000
+2026-01-05 16:11:37,813 - INFO - Epoch 1, Step 1020, Loss: 0.0025
+2026-01-05 16:11:48,115 - INFO - Epoch 1, Step 1040, Loss: 0.0940
+2026-01-05 16:11:58,353 - INFO - Epoch 1, Step 1060, Loss: 0.0388
+2026-01-05 16:12:08,717 - INFO - Epoch 1, Step 1080, Loss: 0.1387
+2026-01-05 16:12:18,930 - INFO - Epoch 1, Step 1100, Loss: 0.1678
+2026-01-05 16:12:29,335 - INFO - Epoch 1, Step 1120, Loss: 0.3680
+2026-01-05 16:12:39,587 - INFO - Epoch 1, Step 1140, Loss: 0.0746
+2026-01-05 16:12:49,903 - INFO - Epoch 1, Step 1160, Loss: 0.1676
+2026-01-05 16:13:00,389 - INFO - Epoch 1, Step 1180, Loss: 0.0063
+2026-01-05 16:13:10,528 - INFO - Epoch 1, Step 1200, Loss: 0.0230
+2026-01-05 16:13:10,568 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-1200
+2026-01-05 16:13:20,863 - INFO - Epoch 1, Step 1220, Loss: 0.0206
+2026-01-05 16:13:31,131 - INFO - Epoch 1, Step 1240, Loss: 0.0449
+2026-01-05 16:13:41,395 - INFO - Epoch 1, Step 1260, Loss: 0.1384
+2026-01-05 16:13:51,693 - INFO - Epoch 1, Step 1280, Loss: 0.2949
+2026-01-05 16:14:02,100 - INFO - Epoch 1, Step 1300, Loss: 0.2366
+2026-01-05 16:14:12,320 - INFO - Epoch 1, Step 1320, Loss: 0.3654
+2026-01-05 16:14:22,610 - INFO - Epoch 1, Step 1340, Loss: 0.0920
+2026-01-05 16:14:32,852 - INFO - Epoch 1, Step 1360, Loss: 0.0143
+2026-01-05 16:14:43,089 - INFO - Epoch 1, Step 1380, Loss: 0.0164
+2026-01-05 16:14:53,284 - INFO - Epoch 1, Step 1400, Loss: 0.0032
+2026-01-05 16:14:53,322 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-1400
+2026-01-05 16:15:03,778 - INFO - Epoch 1, Step 1420, Loss: 0.0053
+2026-01-05 16:15:14,168 - INFO - Epoch 1, Step 1440, Loss: 0.0032
+2026-01-05 16:15:24,367 - INFO - Epoch 1, Step 1460, Loss: 0.2661
+2026-01-05 16:15:34,864 - INFO - Epoch 1, Step 1480, Loss: 0.0794
+2026-01-05 16:15:45,094 - INFO - Epoch 1, Step 1500, Loss: 0.2936
+2026-01-05 16:15:55,308 - INFO - Epoch 1, Step 1520, Loss: 0.0102
+2026-01-05 16:16:05,758 - INFO - Epoch 1, Step 1540, Loss: 0.0080
+2026-01-05 16:16:15,953 - INFO - Epoch 1, Step 1560, Loss: 0.1469
+2026-01-05 16:16:26,220 - INFO - Epoch 1, Step 1580, Loss: 0.0172
+2026-01-05 16:16:36,604 - INFO - Epoch 1, Step 1600, Loss: 0.1243
+2026-01-05 16:16:36,643 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-1600
+2026-01-05 16:16:47,101 - INFO - Epoch 1, Step 1620, Loss: 0.0969
+2026-01-05 16:16:57,477 - INFO - Epoch 1, Step 1640, Loss: 0.5659
+2026-01-05 16:17:07,737 - INFO - Epoch 1, Step 1660, Loss: 0.2070
+2026-01-05 16:17:17,980 - INFO - Epoch 1, Step 1680, Loss: 0.0189
+2026-01-05 16:17:28,194 - INFO - Epoch 1, Step 1700, Loss: 0.6590
+2026-01-05 16:17:38,406 - INFO - Epoch 1, Step 1720, Loss: 0.2269
+2026-01-05 16:17:48,627 - INFO - Epoch 1, Step 1740, Loss: 0.3277
+2026-01-05 16:17:58,842 - INFO - Epoch 1, Step 1760, Loss: 0.2577
+2026-01-05 16:18:09,132 - INFO - Epoch 1, Step 1780, Loss: 0.0403
+2026-01-05 16:18:19,284 - INFO - Epoch 1, Step 1800, Loss: 0.4736
+2026-01-05 16:18:19,322 - INFO - Checkpoint saved: sd15-lora-output\checkpoint-1800
+2026-01-05 16:18:19,324 - INFO - ================================================================================
+2026-01-05 16:18:19,324 - INFO - Saving final LoRA weights...
+2026-01-05 16:18:19,361 - INFO - LoRA weights saved to sd15-lora-output
+2026-01-05 16:18:19,361 - INFO - ================================================================================
+2026-01-05 16:18:19,361 - INFO - Training completed successfully!
+2026-01-05 16:18:19,361 - INFO - ================================================================================

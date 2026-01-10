@@ -2,18 +2,64 @@
 import torch
 from diffusers import StableDiffusionPipeline
 from PIL import Image
+from pathlib import Path
+from safetensors.torch import load_file, save_file
 
 MODEL_ID = "runwayml/stable-diffusion-v1-5"
 LORA_WEIGHTS_PATH = "sd15-lora-output"
 
-PROMPT = "a cinematic photo of window showing sunset, ultra detailed, realistic lighting"
+# Use an in-dataset caption for a fair LoRA comparison
+PROMPT = "aa realistic city skyline with tall residential and office buildings, wide-angle view, high detail"
 NEGATIVE_PROMPT = "blurry, low quality, distorted, artifacts"
 
-STEPS = 25
+STEPS = 50
 CFG_SCALE = 7.5
 WIDTH = 768
 HEIGHT = 512
 SEED = 94
+LORA_SCALE = 1.5  # Increase to amplify LoRA effect (e.g., 1.0–2.0)
+
+
+def _prepare_lora_weights(lora_dir: str, weight_name: str = "pytorch_lora_weights.safetensors"):
+    """Strip legacy prefixes from LoRA keys so diffusers can load them.
+
+    Normalizes old PEFT exports by collapsing prefixes to `unet.` when
+    appropriate (e.g., `unet.base_model.model.` -> `unet.`) so keys align
+    with diffusers UNet modules.
+    """
+    lora_dir_path = Path(lora_dir)
+    src_path = lora_dir_path / weight_name
+    if not src_path.exists():
+        raise FileNotFoundError(f"LoRA file not found: {src_path}")
+
+    state_dict = load_file(src_path)
+    remapped = {}
+    stripped_any = False
+
+    mapping = [
+        ("unet.base_model.model.", "unet."),
+        ("unet.model.", "unet."),
+        ("unet.base_model.", "unet."),
+        ("base_model.model.", "unet."),
+        ("model.", "unet."),
+    ]
+
+    for key, value in state_dict.items():
+        new_key = key
+        for prefix, replacement in mapping:
+            if new_key.startswith(prefix):
+                new_key = replacement + new_key[len(prefix):]
+                stripped_any = True
+                break
+        remapped[new_key] = value
+
+    if not stripped_any:
+        return lora_dir_path, weight_name
+
+    fixed_name = "pytorch_lora_weights_stripped.safetensors"
+    fixed_path = lora_dir_path / fixed_name
+    save_file(remapped, fixed_path)
+    return lora_dir_path, fixed_name
 
 
 def generate_comparison():
@@ -51,46 +97,17 @@ def generate_comparison():
     normal_image.save(normal_output)
     print(f"✓ Normal image saved as {normal_output}")
     
-    # Load LoRA weights - fuse them directly into UNet 
-    print(f"\n[2/2] Loading LoRA weights from {LORA_WEIGHTS_PATH}...")
-    from safetensors.torch import load_file
-    import os
-    
-    lora_file = os.path.join(LORA_WEIGHTS_PATH, "pytorch_lora_weights.safetensors")
-    if not os.path.exists(lora_file):
-        print(f"Error: Could not find {lora_file}")
+    # Load LoRA weights as adapter and apply adjustable scale (no fusion)
+    print(f"\n[2/2] Loading LoRA weights from {LORA_WEIGHTS_PATH} with scale={LORA_SCALE}...")
+    try:
+        lora_dir, weight_name = _prepare_lora_weights(LORA_WEIGHTS_PATH)
+        pipe.load_lora_weights(lora_dir, weight_name=weight_name, adapter_name="pixelforge")
+        pipe.set_adapters(["pixelforge"], adapter_weights=[LORA_SCALE])
+        print("✓ LoRA weights loaded and scaled")
+    except Exception as e:
+        print(f"Error loading LoRA: {e}")
         print("Generating only the normal image...")
         return
-    
-    # Load and process LoRA weights
-    lora_state_dict = load_file(lora_file)
-    print(f"Loaded {len(lora_state_dict)} LoRA weight tensors")
-    
-    # Strip "base_model.model." prefix from keys for compatibility
-    processed_lora = {}
-    for key, value in lora_state_dict.items():
-        new_key = key.replace("base_model.model.", "")
-        processed_lora[new_key] = value
-    
-    # Merge LoRA weights into UNet (permanent fusion for this session)
-    print("Fusing LoRA weights into UNet...")
-    from peft import PeftModel, LoraConfig
-    
-    # Recreate LoRA config matching training
-    lora_config = LoraConfig(
-        r=4,
-        lora_alpha=4,
-        target_modules=["to_k", "to_q", "to_v", "to_out.0"],
-        lora_dropout=0.1,
-    )
-    
-    # Inject LoRA into UNet
-    unet_lora = PeftModel(pipe.unet, lora_config)
-    unet_lora.load_state_dict(processed_lora, strict=False)
-    unet_lora.merge_and_unload()  # Fuse LoRA weights permanently
-    
-    pipe.unet = unet_lora.to(device)
-    print("✓ LoRA weights fused successfully")
     
     # Reset generator with same seed for fair comparison
     generator = torch.Generator(device=device).manual_seed(SEED)
