@@ -467,3 +467,288 @@ Epoch 1/1
 2026-01-05 16:18:19,361 - INFO - ================================================================================
 2026-01-05 16:18:19,361 - INFO - Training completed successfully!
 2026-01-05 16:18:19,361 - INFO - ================================================================================
+2026-01-10 15:12:44,079 - INFO - ================================================================================
+2026-01-10 15:12:44,079 - INFO - Starting Stable Diffusion 1.5 LoRA Training
+2026-01-10 15:12:44,080 - INFO - ================================================================================
+2026-01-10 15:12:44,080 - INFO - Model: runwayml/stable-diffusion-v1-5
+2026-01-10 15:12:44,080 - INFO - Resolution: 512x512
+2026-01-10 15:12:44,081 - INFO - Batch size: 1
+2026-01-10 15:12:44,081 - INFO - Learning rate: 0.0001
+2026-01-10 15:12:44,081 - INFO - LoRA rank: 4
+2026-01-10 15:12:44,081 - INFO - Epochs: 5
+2026-01-10 15:12:44,081 - INFO - Output dir: sd15-lora-indoor
+2026-01-10 15:12:44,081 - INFO - ================================================================================
+2026-01-10 15:12:44,081 - INFO - Loading models...
+2026-01-10 15:12:44,081 - INFO -   Loading text encoder...
+2026-01-10 15:12:45,572 - INFO -   Loading VAE...
+2026-01-10 15:12:46,597 - INFO -   Loading UNet...
+2026-01-10 15:12:47,838 - INFO -   Loading tokenizer...
+2026-01-10 15:12:49,436 - INFO -   Loading scheduler...
+2026-01-10 15:12:49,990 - INFO - Freezing base model parameters...
+2026-01-10 15:12:49,994 - INFO - Adding LoRA adapters...
+2026-01-10 15:12:50,171 - INFO - Trainable parameters: 797,184 / 860,318,148 (0.09%)
+2026-01-10 15:12:50,172 - INFO - Loading dataset...
+2026-01-10 15:12:50,316 - INFO - Loaded 1939 image-caption pairs
+2026-01-10 15:12:50,317 - INFO - Setting up optimizer and scheduler...
+2026-01-10 15:12:50,323 - INFO - Preparing with accelerator...
+2026-01-10 15:12:58,881 - INFO - Starting training...
+2026-01-10 15:12:58,881 - INFO - ================================================================================
+2026-01-10 15:12:58,884 - INFO - 
+Epoch 1/5
+2026-01-10 15:13:42,316 - INFO - Epoch 1, Step 50, Loss: 0.0447
+2026-01-10 15:14:28,315 - INFO - Epoch 1, Step 100, Loss: 0.0386
+2026-01-10 15:15:15,632 - INFO - Epoch 1, Step 150, Loss: 0.1497
+2026-01-10 15:15:59,850 - INFO - ================================================================================
+2026-01-10 15:15:59,850 - INFO - Starting Stable Diffusion 1.5 LoRA Training
+2026-01-10 15:15:59,850 - INFO - ================================================================================
+2026-01-10 15:15:59,851 - INFO - Model: runwayml/stable-diffusion-v1-5
+2026-01-10 15:15:59,851 - INFO - Resolution: 512x512
+2026-01-10 15:15:59,852 - INFO - Batch size: 1
+2026-01-10 15:15:59,852 - INFO - Learning rate: 0.0001
+2026-01-10 15:15:59,852 - INFO - LoRA rank: 4
+2026-01-10 15:15:59,852 - INFO - Epochs: 5
+2026-01-10 15:15:59,852 - INFO - Output dir: sd15-lora-indoor
+2026-01-10 15:15:59,853 - INFO - ================================================================================
+2026-01-10 15:15:59,853 - INFO - Loading models...
+2026-01-10 15:15:59,853 - INFO -   Loading text encoder...
+2026-01-10 15:16:01,204 - INFO -   Loading VAE...
+2026-01-10 15:16:02,240 - INFO -   Loading UNet...
+2026-01-10 15:16:03,332 - INFO -   Loading tokenizer...
+2026-01-10 15:16:04,902 - INFO -   Loading scheduler...
+2026-01-10 15:16:05,427 - INFO - Freezing base model parameters...
+2026-01-10 15:16:05,429 - INFO - Adding LoRA adapters...
+2026-01-10 15:16:05,552 - INFO - Trainable parameters: 797,184 / 860,318,148 (0.09%)
+2026-01-10 15:16:05,552 - INFO - Loading dataset...
+2026-01-10 15:16:05,670 - INFO - Loaded 1939 image-caption pairs
+2026-01-10 15:16:05,670 - INFO - Setting up optimizer and scheduler...
+2026-01-10 15:16:05,675 - INFO - Preparing with accelerator...
+2026-01-10 15:16:08,113 - INFO - Starting training...
+2026-01-10 15:16:08,113 - INFO - ================================================================================
+2026-01-10 15:16:08,114 - INFO - 
+Epoch 1/5
+2026-01-10 15:16:33,604 - INFO - Epoch 1, Step 50, Loss: 0.0447
+2026-01-10 15:16:58,260 - INFO - Epoch 1, Step 100, Loss: 0.0386
+2026-01-10 15:17:23,074 - INFO - Epoch 1, Step 150, Loss: 0.1497
+2026-01-10 15:17:48,341 - INFO - Epoch 1, Step 200, Loss: 0.0985
+2026-01-10 15:18:13,961 - INFO - Epoch 1, Step 250, Loss: 0.2426
+2026-01-10 15:18:39,686 - INFO - Epoch 1, Step 300, Loss: 0.1082
+2026-01-10 15:19:05,349 - INFO - Epoch 1, Step 350, Loss: 0.0028
+2026-01-10 15:19:31,262 - INFO - Epoch 1, Step 400, Loss: 0.0555
+2026-01-10 15:19:57,229 - INFO - Epoch 1, Step 450, Loss: 0.0717
+2026-01-10 15:20:23,412 - INFO - Epoch 1, Step 500, Loss: 0.2405
+2026-01-10 15:20:23,453 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-500
+2026-01-10 15:20:49,701 - INFO - Epoch 1, Step 550, Loss: 0.0198
+2026-01-10 15:21:16,306 - INFO - Epoch 1, Step 600, Loss: 0.0082
+2026-01-10 15:21:42,810 - INFO - Epoch 1, Step 650, Loss: 0.3453
+2026-01-10 15:22:09,240 - INFO - Epoch 1, Step 700, Loss: 0.2339
+2026-01-10 15:22:35,680 - INFO - Epoch 1, Step 750, Loss: 0.0502
+2026-01-10 15:23:02,444 - INFO - Epoch 1, Step 800, Loss: 0.0434
+2026-01-10 15:23:29,464 - INFO - Epoch 1, Step 850, Loss: 0.1966
+2026-01-10 15:23:56,339 - INFO - Epoch 1, Step 900, Loss: 0.0622
+2026-01-10 15:24:23,613 - INFO - Epoch 1, Step 950, Loss: 0.0882
+2026-01-10 15:24:50,816 - INFO - Epoch 1, Step 1000, Loss: 0.0216
+2026-01-10 15:24:50,859 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-1000
+2026-01-10 15:25:18,407 - INFO - Epoch 1, Step 1050, Loss: 0.1529
+2026-01-10 15:25:45,872 - INFO - Epoch 1, Step 1100, Loss: 0.1745
+2026-01-10 15:26:13,265 - INFO - Epoch 1, Step 1150, Loss: 0.2011
+2026-01-10 15:26:41,148 - INFO - Epoch 1, Step 1200, Loss: 0.0220
+2026-01-10 15:27:08,696 - INFO - Epoch 1, Step 1250, Loss: 0.0059
+2026-01-10 15:27:36,376 - INFO - Epoch 1, Step 1300, Loss: 0.3762
+2026-01-10 15:28:03,809 - INFO - Epoch 1, Step 1350, Loss: 0.0386
+2026-01-10 15:28:31,486 - INFO - Epoch 1, Step 1400, Loss: 0.0033
+2026-01-10 15:28:59,190 - INFO - Epoch 1, Step 1450, Loss: 0.1191
+2026-01-10 15:29:26,959 - INFO - Epoch 1, Step 1500, Loss: 0.2516
+2026-01-10 15:29:27,000 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-1500
+2026-01-10 15:29:55,130 - INFO - Epoch 1, Step 1550, Loss: 0.0903
+2026-01-10 15:30:23,260 - INFO - Epoch 1, Step 1600, Loss: 0.0954
+2026-01-10 15:30:51,396 - INFO - Epoch 1, Step 1650, Loss: 0.4671
+2026-01-10 15:31:19,068 - INFO - Epoch 1, Step 1700, Loss: 0.6112
+2026-01-10 15:31:46,601 - INFO - Epoch 1, Step 1750, Loss: 0.1128
+2026-01-10 15:32:14,679 - INFO - Epoch 1, Step 1800, Loss: 0.5292
+2026-01-10 15:32:43,971 - INFO - Epoch 1, Step 1850, Loss: 0.0059
+2026-01-10 15:33:13,791 - INFO - Epoch 1, Step 1900, Loss: 0.3149
+2026-01-10 15:33:37,001 - INFO - 
+Epoch 2/5
+2026-01-10 15:33:43,637 - INFO - Epoch 2, Step 1950, Loss: 0.3377
+2026-01-10 15:34:12,389 - INFO - Epoch 2, Step 2000, Loss: 0.2834
+2026-01-10 15:34:12,432 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-2000
+2026-01-10 15:34:40,244 - INFO - Epoch 2, Step 2050, Loss: 0.0646
+2026-01-10 15:35:08,023 - INFO - Epoch 2, Step 2100, Loss: 0.1386
+2026-01-10 15:35:35,906 - INFO - Epoch 2, Step 2150, Loss: 0.0516
+2026-01-10 15:36:03,707 - INFO - Epoch 2, Step 2200, Loss: 0.0037
+2026-01-10 15:36:31,631 - INFO - Epoch 2, Step 2250, Loss: 0.1812
+2026-01-10 15:36:59,504 - INFO - Epoch 2, Step 2300, Loss: 0.3615
+2026-01-10 15:37:27,331 - INFO - Epoch 2, Step 2350, Loss: 0.0155
+2026-01-10 15:37:55,149 - INFO - Epoch 2, Step 2400, Loss: 0.0639
+2026-01-10 15:38:22,762 - INFO - Epoch 2, Step 2450, Loss: 0.2663
+2026-01-10 15:38:50,483 - INFO - Epoch 2, Step 2500, Loss: 0.2155
+2026-01-10 15:38:50,520 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-2500
+2026-01-10 15:39:19,042 - INFO - Epoch 2, Step 2550, Loss: 0.1297
+2026-01-10 15:39:47,517 - INFO - Epoch 2, Step 2600, Loss: 0.2181
+2026-01-10 15:40:16,732 - INFO - Epoch 2, Step 2650, Loss: 0.0147
+2026-01-10 15:40:45,884 - INFO - Epoch 2, Step 2700, Loss: 0.0120
+2026-01-10 15:41:15,594 - INFO - Epoch 2, Step 2750, Loss: 0.0107
+2026-01-10 15:41:43,616 - INFO - Epoch 2, Step 2800, Loss: 0.0322
+2026-01-10 15:42:11,456 - INFO - Epoch 2, Step 2850, Loss: 0.1217
+2026-01-10 15:42:39,616 - INFO - Epoch 2, Step 2900, Loss: 0.1117
+2026-01-10 15:43:09,411 - INFO - Epoch 2, Step 2950, Loss: 0.0150
+2026-01-10 15:43:39,494 - INFO - Epoch 2, Step 3000, Loss: 0.1037
+2026-01-10 15:43:39,554 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-3000
+2026-01-10 15:44:09,021 - INFO - Epoch 2, Step 3050, Loss: 0.0075
+2026-01-10 15:44:38,749 - INFO - Epoch 2, Step 3100, Loss: 0.0041
+2026-01-10 15:45:07,826 - INFO - Epoch 2, Step 3150, Loss: 0.0849
+2026-01-10 15:45:34,285 - INFO - Epoch 2, Step 3200, Loss: 0.0210
+2026-01-10 15:45:59,783 - INFO - Epoch 2, Step 3250, Loss: 0.0673
+2026-01-10 15:46:24,422 - INFO - Epoch 2, Step 3300, Loss: 0.1712
+2026-01-10 15:46:48,822 - INFO - Epoch 2, Step 3350, Loss: 0.0772
+2026-01-10 15:47:13,159 - INFO - Epoch 2, Step 3400, Loss: 0.1059
+2026-01-10 15:47:37,832 - INFO - Epoch 2, Step 3450, Loss: 0.1810
+2026-01-10 15:48:02,455 - INFO - Epoch 2, Step 3500, Loss: 0.0910
+2026-01-10 15:48:02,493 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-3500
+2026-01-10 15:48:27,123 - INFO - Epoch 2, Step 3550, Loss: 0.3558
+2026-01-10 15:48:51,969 - INFO - Epoch 2, Step 3600, Loss: 0.5495
+2026-01-10 15:49:16,801 - INFO - Epoch 2, Step 3650, Loss: 0.0054
+2026-01-10 15:49:41,571 - INFO - Epoch 2, Step 3700, Loss: 0.0133
+2026-01-10 15:50:06,060 - INFO - Epoch 2, Step 3750, Loss: 0.0395
+2026-01-10 15:50:31,109 - INFO - Epoch 2, Step 3800, Loss: 0.1154
+2026-01-10 15:50:58,611 - INFO - Epoch 2, Step 3850, Loss: 0.0218
+2026-01-10 15:51:12,891 - INFO - 
+Epoch 3/5
+2026-01-10 15:51:23,703 - INFO - Epoch 3, Step 3900, Loss: 0.2218
+2026-01-10 15:51:48,023 - INFO - Epoch 3, Step 3950, Loss: 0.0116
+2026-01-10 15:52:13,908 - INFO - Epoch 3, Step 4000, Loss: 0.0207
+2026-01-10 15:52:13,955 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-4000
+2026-01-10 15:52:38,617 - INFO - Epoch 3, Step 4050, Loss: 0.0738
+2026-01-10 15:53:03,711 - INFO - Epoch 3, Step 4100, Loss: 0.0029
+2026-01-10 15:53:30,114 - INFO - Epoch 3, Step 4150, Loss: 0.2232
+2026-01-10 15:53:56,889 - INFO - Epoch 3, Step 4200, Loss: 0.1123
+2026-01-10 15:54:23,499 - INFO - Epoch 3, Step 4250, Loss: 0.0824
+2026-01-10 15:54:50,899 - INFO - Epoch 3, Step 4300, Loss: 0.1515
+2026-01-10 15:55:17,160 - INFO - Epoch 3, Step 4350, Loss: 0.0055
+2026-01-10 15:55:41,989 - INFO - Epoch 3, Step 4400, Loss: 0.9677
+2026-01-10 15:56:08,045 - INFO - Epoch 3, Step 4450, Loss: 0.0072
+2026-01-10 15:56:32,290 - INFO - Epoch 3, Step 4500, Loss: 0.1573
+2026-01-10 15:56:32,328 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-4500
+2026-01-10 15:56:56,755 - INFO - Epoch 3, Step 4550, Loss: 0.0059
+2026-01-10 15:57:21,234 - INFO - Epoch 3, Step 4600, Loss: 0.0564
+2026-01-10 15:57:45,458 - INFO - Epoch 3, Step 4650, Loss: 0.0551
+2026-01-10 15:58:09,847 - INFO - Epoch 3, Step 4700, Loss: 0.2265
+2026-01-10 15:58:34,098 - INFO - Epoch 3, Step 4750, Loss: 0.1210
+2026-01-10 15:58:58,282 - INFO - Epoch 3, Step 4800, Loss: 0.0045
+2026-01-10 15:59:22,689 - INFO - Epoch 3, Step 4850, Loss: 0.0631
+2026-01-10 15:59:47,127 - INFO - Epoch 3, Step 4900, Loss: 0.2877
+2026-01-10 16:00:11,425 - INFO - Epoch 3, Step 4950, Loss: 0.3267
+2026-01-10 16:00:35,778 - INFO - Epoch 3, Step 5000, Loss: 0.0551
+2026-01-10 16:00:35,818 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-5000
+2026-01-10 16:01:00,165 - INFO - Epoch 3, Step 5050, Loss: 0.7241
+2026-01-10 16:01:24,333 - INFO - Epoch 3, Step 5100, Loss: 0.0186
+2026-01-10 16:01:48,749 - INFO - Epoch 3, Step 5150, Loss: 0.0072
+2026-01-10 16:02:13,073 - INFO - Epoch 3, Step 5200, Loss: 0.0039
+2026-01-10 16:02:37,244 - INFO - Epoch 3, Step 5250, Loss: 0.0129
+2026-01-10 16:03:01,466 - INFO - Epoch 3, Step 5300, Loss: 0.1151
+2026-01-10 16:03:25,633 - INFO - Epoch 3, Step 5350, Loss: 0.2716
+2026-01-10 16:03:49,826 - INFO - Epoch 3, Step 5400, Loss: 0.0150
+2026-01-10 16:04:14,168 - INFO - Epoch 3, Step 5450, Loss: 0.0593
+2026-01-10 16:04:38,615 - INFO - Epoch 3, Step 5500, Loss: 0.0091
+2026-01-10 16:04:38,650 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-5500
+2026-01-10 16:05:03,057 - INFO - Epoch 3, Step 5550, Loss: 0.2759
+2026-01-10 16:05:27,298 - INFO - Epoch 3, Step 5600, Loss: 0.2878
+2026-01-10 16:05:51,521 - INFO - Epoch 3, Step 5650, Loss: 0.2763
+2026-01-10 16:06:15,804 - INFO - Epoch 3, Step 5700, Loss: 0.0730
+2026-01-10 16:06:40,170 - INFO - Epoch 3, Step 5750, Loss: 0.1196
+2026-01-10 16:07:04,327 - INFO - Epoch 3, Step 5800, Loss: 0.3198
+2026-01-10 16:07:12,641 - INFO - 
+Epoch 4/5
+2026-01-10 16:07:28,782 - INFO - Epoch 4, Step 5850, Loss: 0.1874
+2026-01-10 16:07:52,949 - INFO - Epoch 4, Step 5900, Loss: 0.0338
+2026-01-10 16:08:17,265 - INFO - Epoch 4, Step 5950, Loss: 0.4364
+2026-01-10 16:08:41,607 - INFO - Epoch 4, Step 6000, Loss: 0.0853
+2026-01-10 16:08:41,646 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-6000
+2026-01-10 16:09:06,030 - INFO - Epoch 4, Step 6050, Loss: 0.3002
+2026-01-10 16:09:30,385 - INFO - Epoch 4, Step 6100, Loss: 0.0035
+2026-01-10 16:09:54,671 - INFO - Epoch 4, Step 6150, Loss: 0.0964
+2026-01-10 16:10:21,867 - INFO - Epoch 4, Step 6200, Loss: 0.0029
+2026-01-10 16:10:49,338 - INFO - Epoch 4, Step 6250, Loss: 0.0793
+2026-01-10 16:11:16,719 - INFO - Epoch 4, Step 6300, Loss: 0.1195
+2026-01-10 16:11:45,211 - INFO - Epoch 4, Step 6350, Loss: 0.1760
+2026-01-10 16:12:17,242 - INFO - Epoch 4, Step 6400, Loss: 0.0957
+2026-01-10 16:12:44,606 - INFO - Epoch 4, Step 6450, Loss: 0.0221
+2026-01-10 16:13:11,029 - INFO - Epoch 4, Step 6500, Loss: 0.3971
+2026-01-10 16:13:11,066 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-6500
+2026-01-10 16:13:35,156 - INFO - Epoch 4, Step 6550, Loss: 0.0392
+2026-01-10 16:13:59,048 - INFO - Epoch 4, Step 6600, Loss: 0.3845
+2026-01-10 16:14:22,989 - INFO - Epoch 4, Step 6650, Loss: 0.0104
+2026-01-10 16:14:46,905 - INFO - Epoch 4, Step 6700, Loss: 0.1365
+2026-01-10 16:15:10,807 - INFO - Epoch 4, Step 6750, Loss: 0.3754
+2026-01-10 16:15:34,858 - INFO - Epoch 4, Step 6800, Loss: 0.1941
+2026-01-10 16:15:58,916 - INFO - Epoch 4, Step 6850, Loss: 0.0269
+2026-01-10 16:16:22,733 - INFO - Epoch 4, Step 6900, Loss: 0.2858
+2026-01-10 16:16:46,842 - INFO - Epoch 4, Step 6950, Loss: 0.0557
+2026-01-10 16:17:10,864 - INFO - Epoch 4, Step 7000, Loss: 0.4035
+2026-01-10 16:17:10,904 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-7000
+2026-01-10 16:17:34,980 - INFO - Epoch 4, Step 7050, Loss: 0.1058
+2026-01-10 16:17:59,568 - INFO - Epoch 4, Step 7100, Loss: 0.0395
+2026-01-10 16:18:25,114 - INFO - Epoch 4, Step 7150, Loss: 0.0223
+2026-01-10 16:18:50,368 - INFO - Epoch 4, Step 7200, Loss: 0.0130
+2026-01-10 16:19:14,615 - INFO - Epoch 4, Step 7250, Loss: 0.1963
+2026-01-10 16:19:49,390 - INFO - Epoch 4, Step 7300, Loss: 0.4411
+2026-01-10 16:20:29,267 - INFO - Epoch 4, Step 7350, Loss: 0.2256
+2026-01-10 16:21:02,494 - INFO - Epoch 4, Step 7400, Loss: 0.0033
+2026-01-10 16:21:33,952 - INFO - Epoch 4, Step 7450, Loss: 0.0363
+2026-01-10 16:22:16,484 - INFO - Epoch 4, Step 7500, Loss: 0.0111
+2026-01-10 16:22:16,540 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-7500
+2026-01-10 16:22:55,271 - INFO - Epoch 4, Step 7550, Loss: 0.6178
+2026-01-10 16:23:39,618 - INFO - Epoch 4, Step 7600, Loss: 0.0685
+2026-01-10 16:24:25,778 - INFO - Epoch 4, Step 7650, Loss: 0.0194
+2026-01-10 16:25:00,615 - INFO - Epoch 4, Step 7700, Loss: 0.0105
+2026-01-10 16:25:35,058 - INFO - Epoch 4, Step 7750, Loss: 0.0931
+2026-01-10 16:25:39,704 - INFO - 
+Epoch 5/5
+2026-01-10 16:26:09,548 - INFO - Epoch 5, Step 7800, Loss: 0.0070
+2026-01-10 16:26:43,655 - INFO - Epoch 5, Step 7850, Loss: 0.2205
+2026-01-10 16:27:20,805 - INFO - Epoch 5, Step 7900, Loss: 0.0246
+2026-01-10 16:27:59,413 - INFO - Epoch 5, Step 7950, Loss: 0.0018
+2026-01-10 16:28:32,344 - INFO - Epoch 5, Step 8000, Loss: 0.0114
+2026-01-10 16:28:32,381 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-8000
+2026-01-10 16:29:09,784 - INFO - Epoch 5, Step 8050, Loss: 0.2140
+2026-01-10 16:29:46,669 - INFO - Epoch 5, Step 8100, Loss: 0.0088
+2026-01-10 16:30:23,540 - INFO - Epoch 5, Step 8150, Loss: 0.0795
+2026-01-10 16:31:00,501 - INFO - Epoch 5, Step 8200, Loss: 0.0163
+2026-01-10 16:31:36,717 - INFO - Epoch 5, Step 8250, Loss: 0.4062
+2026-01-10 16:32:12,499 - INFO - Epoch 5, Step 8300, Loss: 0.0419
+2026-01-10 16:32:48,535 - INFO - Epoch 5, Step 8350, Loss: 0.4077
+2026-01-10 16:33:24,907 - INFO - Epoch 5, Step 8400, Loss: 0.0533
+2026-01-10 16:34:02,896 - INFO - Epoch 5, Step 8450, Loss: 0.0156
+2026-01-10 16:34:37,509 - INFO - Epoch 5, Step 8500, Loss: 0.0336
+2026-01-10 16:34:37,544 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-8500
+2026-01-10 16:35:15,341 - INFO - Epoch 5, Step 8550, Loss: 0.0711
+2026-01-10 16:35:50,138 - INFO - Epoch 5, Step 8600, Loss: 0.1027
+2026-01-10 16:36:23,729 - INFO - Epoch 5, Step 8650, Loss: 0.0952
+2026-01-10 16:37:03,699 - INFO - Epoch 5, Step 8700, Loss: 0.5565
+2026-01-10 16:37:41,744 - INFO - Epoch 5, Step 8750, Loss: 0.1238
+2026-01-10 16:38:19,186 - INFO - Epoch 5, Step 8800, Loss: 0.0176
+2026-01-10 16:38:56,813 - INFO - Epoch 5, Step 8850, Loss: 0.0037
+2026-01-10 16:39:32,019 - INFO - Epoch 5, Step 8900, Loss: 0.2291
+2026-01-10 16:40:08,376 - INFO - Epoch 5, Step 8950, Loss: 0.2748
+2026-01-10 16:40:44,075 - INFO - Epoch 5, Step 9000, Loss: 0.0049
+2026-01-10 16:40:44,115 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-9000
+2026-01-10 16:41:17,649 - INFO - Epoch 5, Step 9050, Loss: 0.3198
+2026-01-10 16:41:54,780 - INFO - Epoch 5, Step 9100, Loss: 0.1691
+2026-01-10 16:42:29,890 - INFO - Epoch 5, Step 9150, Loss: 0.1973
+2026-01-10 16:43:05,776 - INFO - Epoch 5, Step 9200, Loss: 0.0208
+2026-01-10 16:43:44,102 - INFO - Epoch 5, Step 9250, Loss: 0.0647
+2026-01-10 16:44:11,280 - INFO - Epoch 5, Step 9300, Loss: 0.0096
+2026-01-10 16:44:35,643 - INFO - Epoch 5, Step 9350, Loss: 0.1927
+2026-01-10 16:44:59,701 - INFO - Epoch 5, Step 9400, Loss: 0.0150
+2026-01-10 16:45:23,768 - INFO - Epoch 5, Step 9450, Loss: 0.0030
+2026-01-10 16:45:48,164 - INFO - Epoch 5, Step 9500, Loss: 0.0337
+2026-01-10 16:45:48,203 - INFO - Checkpoint saved: sd15-lora-indoor\checkpoint-9500
+2026-01-10 16:46:12,321 - INFO - Epoch 5, Step 9550, Loss: 0.0157
+2026-01-10 16:46:36,502 - INFO - Epoch 5, Step 9600, Loss: 0.0175
+2026-01-10 16:47:00,689 - INFO - Epoch 5, Step 9650, Loss: 0.2227
+2026-01-10 16:47:22,353 - INFO - ================================================================================
+2026-01-10 16:47:22,353 - INFO - Saving final LoRA weights...
+2026-01-10 16:47:22,395 - INFO - LoRA weights saved to sd15-lora-indoor
+2026-01-10 16:47:22,395 - INFO - ================================================================================
+2026-01-10 16:47:22,395 - INFO - Training completed successfully!
+2026-01-10 16:47:22,395 - INFO - ================================================================================

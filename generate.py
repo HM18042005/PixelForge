@@ -1,15 +1,19 @@
 
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Dict, Optional
+
 import torch
 from diffusers import StableDiffusionPipeline
 from PIL import Image
-from pathlib import Path
 from safetensors.torch import load_file, save_file
 
 MODEL_ID = "runwayml/stable-diffusion-v1-5"
-LORA_WEIGHTS_PATH = "sd15-lora-output"
+LORA_INDOOR_PATH = "sd15-lora-indoor"
+LORA_OUTPUT_PATH = "sd15-lora-output"
 
 # Use an in-dataset caption for a fair LoRA comparison
-PROMPT = "aa realistic city skyline with tall residential and office buildings, wide-angle view, high detail"
+PROMPT = "make a highly realistic image of an airport lobby photo realistic"
 NEGATIVE_PROMPT = "blurry, low quality, distorted, artifacts"
 
 STEPS = 50
@@ -17,7 +21,31 @@ CFG_SCALE = 7.5
 WIDTH = 768
 HEIGHT = 512
 SEED = 94
-LORA_SCALE = 1.5  # Increase to amplify LoRA effect (e.g., 1.0–2.0)
+LORA_SCALE = 1.5  # Default indoor LoRA scale
+LORA_OUTPUT_SCALE = 1.0  # Default output LoRA scale
+
+
+_PIPE: Optional[StableDiffusionPipeline] = None
+_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+_ADAPTERS = [
+    ("indoor", LORA_INDOOR_PATH),
+    ("output", LORA_OUTPUT_PATH),
+]
+
+
+@dataclass
+class GenerationResult:
+    normal: Image.Image
+    lora: Image.Image
+    comparison: Optional[Image.Image]
+    metadata: Dict
+
+    def images(self) -> Dict[str, Image.Image]:
+        return {
+            "normal": self.normal,
+            "lora": self.lora,
+            "comparison": self.comparison,
+        }
 
 
 def _prepare_lora_weights(lora_dir: str, weight_name: str = "pytorch_lora_weights.safetensors"):
@@ -62,110 +90,150 @@ def _prepare_lora_weights(lora_dir: str, weight_name: str = "pytorch_lora_weight
     return lora_dir_path, fixed_name
 
 
-def generate_comparison():
-    """Generate both normal and LoRA fine-tuned images for comparison"""
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"Using device: {device}")
-    print("=" * 80)
+def _load_pipeline(lora_scales: Dict[str, float]) -> StableDiffusionPipeline:
+    global _PIPE
 
-    # Load base pipeline
-    print("Loading Stable Diffusion 1.5 pipeline...")
+    if _PIPE is not None:
+        _PIPE.set_adapters(
+            [name for name, _ in _ADAPTERS],
+            adapter_weights=[lora_scales.get(name, 0.0) for name, _ in _ADAPTERS],
+        )
+        return _PIPE
+
+    dtype = torch.float16 if _DEVICE == "cuda" else torch.float32
     pipe = StableDiffusionPipeline.from_pretrained(
         MODEL_ID,
-        torch_dtype=torch.float16,
-        safety_checker=None
+        torch_dtype=dtype,
+        safety_checker=None,
     )
-    pipe.to(device)
+    pipe.to(_DEVICE)
     pipe.enable_attention_slicing()
-    
-    generator = torch.Generator(device=device).manual_seed(SEED)
-    
-    # Generate normal image (without LoRA)
-    print("\n[1/2] Generating NORMAL image (without LoRA)...")
-    print(f"Prompt: {PROMPT}")
-    normal_image = pipe(
-        prompt=PROMPT,
-        negative_prompt=NEGATIVE_PROMPT,
-        num_inference_steps=STEPS,
-        guidance_scale=CFG_SCALE,
-        generator=generator,
-        width=WIDTH,
-        height=HEIGHT
-    ).images[0]
-    
-    normal_output = "output_normal.png"
-    normal_image.save(normal_output)
-    print(f"✓ Normal image saved as {normal_output}")
-    
-    # Load LoRA weights as adapter and apply adjustable scale (no fusion)
-    print(f"\n[2/2] Loading LoRA weights from {LORA_WEIGHTS_PATH} with scale={LORA_SCALE}...")
-    try:
-        lora_dir, weight_name = _prepare_lora_weights(LORA_WEIGHTS_PATH)
-        pipe.load_lora_weights(lora_dir, weight_name=weight_name, adapter_name="pixelforge")
-        pipe.set_adapters(["pixelforge"], adapter_weights=[LORA_SCALE])
-        print("✓ LoRA weights loaded and scaled")
-    except Exception as e:
-        print(f"Error loading LoRA: {e}")
-        print("Generating only the normal image...")
-        return
-    
-    # Reset generator with same seed for fair comparison
-    generator = torch.Generator(device=device).manual_seed(SEED)
-    
-    # Generate LoRA fine-tuned image
-    print("\nGenerating LORA FINE-TUNED image...")
-    print(f"Prompt: {PROMPT}")
-    lora_image = pipe(
-        prompt=PROMPT,
-        negative_prompt=NEGATIVE_PROMPT,
-        num_inference_steps=STEPS,
-        guidance_scale=CFG_SCALE,
-        generator=generator,
-        width=WIDTH,
-        height=HEIGHT
-    ).images[0]
-    
-    lora_output = "output_lora.png"
-    lora_image.save(lora_output)
-    print(f"✓ LoRA image saved as {lora_output}")
-    
-    # Create side-by-side comparison
-    print("\nCreating side-by-side comparison...")
-    comparison_width = WIDTH * 2 + 20  # 20px padding between images
-    comparison_height = HEIGHT + 60  # Extra space for labels
-    
-    comparison = Image.new('RGB', (comparison_width, comparison_height), 'white')
-    
-    # Paste images
+
+    for adapter_name, adapter_path in _ADAPTERS:
+        lora_dir, weight_name = _prepare_lora_weights(adapter_path)
+        pipe.load_lora_weights(lora_dir, weight_name=weight_name, adapter_name=adapter_name)
+
+    pipe.set_adapters(
+        [name for name, _ in _ADAPTERS],
+        adapter_weights=[lora_scales.get(name, 0.0) for name, _ in _ADAPTERS],
+    )
+
+    _PIPE = pipe
+    return _PIPE
+
+
+def _make_comparison(normal_image: Image.Image, lora_image: Image.Image, width: int, height: int) -> Image.Image:
+    comparison_width = width * 2 + 20
+    comparison_height = height + 60
+
+    comparison = Image.new("RGB", (comparison_width, comparison_height), "white")
     comparison.paste(normal_image, (0, 40))
-    comparison.paste(lora_image, (WIDTH + 20, 40))
-    
-    # Add labels (simple text simulation using image manipulation)
+    comparison.paste(lora_image, (width + 20, 40))
+
     from PIL import ImageDraw, ImageFont
+
     draw = ImageDraw.Draw(comparison)
-    
+
     try:
-        # Try to use a nicer font
         font = ImageFont.truetype("arial.ttf", 20)
-    except:
-        # Fallback to default font
+    except Exception:
         font = ImageFont.load_default()
-    
-    draw.text((WIDTH // 2 - 80, 10), "NORMAL (No LoRA)", fill='black', font=font)
-    draw.text((WIDTH + WIDTH // 2 - 60, 10), "LORA FINE-TUNED", fill='black', font=font)
-    
-    comparison_output = "output_comparison.png"
-    comparison.save(comparison_output)
-    print(f"✓ Comparison image saved as {comparison_output}")
-    
-    print("\n" + "=" * 80)
+
+    draw.text((width // 2 - 80, 10), "NORMAL (No LoRA)", fill="black", font=font)
+    draw.text((width + width // 2 - 60, 10), "LORA FINE-TUNED", fill="black", font=font)
+
+    return comparison
+
+
+def generate_images(
+    prompt: str = PROMPT,
+    negative_prompt: str = NEGATIVE_PROMPT,
+    steps: int = STEPS,
+    guidance_scale: float = CFG_SCALE,
+    width: int = WIDTH,
+    height: int = HEIGHT,
+    seed: int = SEED,
+    lora_scales: Optional[Dict[str, float]] = None,
+    include_comparison: bool = True,
+) -> GenerationResult:
+    if lora_scales is None:
+        lora_scales = {"indoor": LORA_SCALE, "output": LORA_OUTPUT_SCALE}
+
+    pipe = _load_pipeline(lora_scales=lora_scales)
+
+    pipe.set_adapters([name for name, _ in _ADAPTERS], adapter_weights=[0.0] * len(_ADAPTERS))
+    generator = torch.Generator(device=_DEVICE).manual_seed(seed)
+    normal_image = pipe(
+        prompt=prompt,
+        negative_prompt=negative_prompt,
+        num_inference_steps=steps,
+        guidance_scale=guidance_scale,
+        generator=generator,
+        width=width,
+        height=height,
+    ).images[0]
+
+    pipe.set_adapters(
+        [name for name, _ in _ADAPTERS],
+        adapter_weights=[lora_scales.get(name, 0.0) for name, _ in _ADAPTERS],
+    )
+    generator = torch.Generator(device=_DEVICE).manual_seed(seed)
+    lora_image = pipe(
+        prompt=prompt,
+        negative_prompt=negative_prompt,
+        num_inference_steps=steps,
+        guidance_scale=guidance_scale,
+        generator=generator,
+        width=width,
+        height=height,
+    ).images[0]
+
+    comparison_image = _make_comparison(normal_image, lora_image, width, height) if include_comparison else None
+
+    metadata = {
+        "prompt": prompt,
+        "negative_prompt": negative_prompt,
+        "steps": steps,
+        "guidance_scale": guidance_scale,
+        "width": width,
+        "height": height,
+        "seed": seed,
+        "lora_scales": lora_scales,
+        "device": _DEVICE,
+    }
+
+    return GenerationResult(
+        normal=normal_image,
+        lora=lora_image,
+        comparison=comparison_image,
+        metadata=metadata,
+    )
+
+
+def save_generation(result: GenerationResult, output_dir: str = "."):
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    normal_output = output_path / "output_normal.png"
+    lora_output = output_path / "output_lora.png"
+    comparison_output = output_path / "output_comparison.png"
+
+    result.normal.save(normal_output)
+    result.lora.save(lora_output)
+    if result.comparison:
+        result.comparison.save(comparison_output)
+
+    print("=" * 80)
     print("Generation complete!")
-    print(f"\nFiles created:")
+    print(f"Device: {_DEVICE}")
+    print(f"Prompt: {result.metadata['prompt']}")
+    print("Files created:")
     print(f"  - {normal_output} (baseline)")
     print(f"  - {lora_output} (with LoRA)")
-    print(f"  - {comparison_output} (side-by-side)")
+    if result.comparison:
+        print(f"  - {comparison_output} (side-by-side)")
     print("=" * 80)
 
 
 if __name__ == "__main__":
-    generate_comparison()
+    save_generation(generate_images())
