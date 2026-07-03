@@ -21,7 +21,7 @@ artifacts/
 *.jpg
 *.jpeg
 .mypy_cache/
-
+graphify-out/
 # Documentation files (kept locally, not tracked)
 PROJECT_REPORT.md
 ADR.md
